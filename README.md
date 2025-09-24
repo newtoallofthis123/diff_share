@@ -70,11 +70,11 @@ php -S localhost:8000
 
 Shareable URLs use the following format:
 ```
-https://diff.noobscience.in#<compressed_text1>Ê<compressed_text2>
+https://diff.noobscience.in#<compressed_text1>ÃŠ<compressed_text2>
 ```
 
 - Texts are compressed using LZ-String compression
-- Diamond separator (Ê) distinguishes between the two texts
+- Diamond separator (ÃŠ) distinguishes between the two texts
 - URLs support up to 64KB of data in the fragment
 
 ## Themes
@@ -113,10 +113,6 @@ Contributions are welcome! Please feel free to submit issues or pull requests.
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
-
-## Copyright
-
-© 2024 [NoobScience](https://noobscience.in). All rights reserved.
 
 ---
 
