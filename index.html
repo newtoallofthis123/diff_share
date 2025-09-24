@@ -7,6 +7,11 @@
 
     <!-- External Libraries -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
+
+    <!-- Highlight.js themes for light/dark mode -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" media="screen and (prefers-color-scheme: light)" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" media="screen and (prefers-color-scheme: dark)" />
+
     <script src="https://cdn.jsdelivr.net/npm/diff/dist/diff.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lz-string/libs/lz-string.min.js"></script>
@@ -20,10 +25,11 @@
 
         body {
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -35,19 +41,19 @@
         header {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 1px solid #21262d;
+            border-bottom: 1px solid var(--header-border);
             padding-bottom: 20px;
         }
 
         header h1 {
-            color: #58a6ff;
+            color: var(--button-secondary);
             font-size: 2.5em;
             margin-bottom: 10px;
             font-weight: 300;
         }
 
         header p {
-            color: #8b949e;
+            color: var(--placeholder-color);
             font-size: 1.1em;
         }
 
@@ -64,17 +70,17 @@
         }
 
         .text-input label {
-            color: #f0f6fc;
+            color: var(--text-color);
             font-weight: 600;
             margin-bottom: 8px;
             font-size: 1.1em;
         }
 
         textarea {
-            background-color: #161b22;
-            border: 1px solid #30363d;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
             border-radius: 6px;
-            color: #c9d1d9;
+            color: var(--text-color);
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 14px;
             line-height: 1.5;
@@ -86,12 +92,12 @@
         }
 
         textarea:focus {
-            border-color: #58a6ff;
-            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+            border-color: var(--button-secondary);
+            box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.1);
         }
 
         textarea::placeholder {
-            color: #6e7681;
+            color: var(--placeholder-color);
         }
 
         .controls {
@@ -102,8 +108,8 @@
         }
 
         button {
-            background-color: #238636;
-            border: 1px solid #2ea043;
+            background-color: var(--button-primary);
+            border: 1px solid var(--button-primary);
             border-radius: 6px;
             color: #ffffff;
             cursor: pointer;
@@ -116,8 +122,8 @@
         }
 
         button:hover {
-            background-color: #2ea043;
-            border-color: #46954a;
+            background-color: var(--button-primary-hover);
+            border-color: var(--button-primary-hover);
             transform: translateY(-1px);
         }
 
@@ -125,29 +131,29 @@
             transform: translateY(0);
         }
 
-        #shareUrl {
-            background-color: #1f6feb;
-            border-color: #1f6feb;
+        #shareUrl, #themeToggle {
+            background-color: var(--button-secondary);
+            border-color: var(--button-secondary);
         }
 
-        #shareUrl:hover {
-            background-color: #388bfd;
-            border-color: #388bfd;
+        #shareUrl:hover, #themeToggle:hover {
+            background-color: var(--button-secondary-hover);
+            border-color: var(--button-secondary-hover);
         }
 
         #clearAll {
-            background-color: #da3633;
-            border-color: #da3633;
+            background-color: var(--button-danger);
+            border-color: var(--button-danger);
         }
 
         #clearAll:hover {
-            background-color: #f85149;
-            border-color: #f85149;
+            background-color: var(--button-danger-hover);
+            border-color: var(--button-danger-hover);
         }
 
         .diff-container {
-            background-color: #161b22;
-            border: 1px solid #30363d;
+            background-color: var(--diff-bg);
+            border: 1px solid var(--diff-border);
             border-radius: 6px;
             min-height: 200px;
             overflow: auto;
@@ -155,34 +161,53 @@
 
         .diff-container:empty::before {
             content: "Diff will appear here once you enter text in both fields...";
-            color: #6e7681;
+            color: var(--empty-text);
             display: block;
             text-align: center;
             padding: 60px 20px;
             font-style: italic;
         }
 
-        /* Override diff2html styles for dark theme */
-        .d2h-wrapper {
-            background-color: transparent !important;
+        /* Theme variables */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --border-color: #d1d9e0;
+            --input-bg: #ffffff;
+            --input-border: #d1d9e0;
+            --header-border: #d1d9e0;
+            --placeholder-color: #656d76;
+            --button-primary: #238636;
+            --button-primary-hover: #2ea043;
+            --button-secondary: #1f6feb;
+            --button-secondary-hover: #388bfd;
+            --button-danger: #da3633;
+            --button-danger-hover: #f85149;
+            --diff-bg: #ffffff;
+            --diff-border: #d1d9e0;
+            --empty-text: #656d76;
         }
 
-        .d2h-file-header {
-            background-color: #21262d !important;
-            border-color: #30363d !important;
+        [data-theme="dark"] {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --border-color: #21262d;
+            --input-bg: #161b22;
+            --input-border: #30363d;
+            --header-border: #21262d;
+            --placeholder-color: #6e7681;
+            --button-primary: #238636;
+            --button-primary-hover: #2ea043;
+            --button-secondary: #1f6feb;
+            --button-secondary-hover: #388bfd;
+            --button-danger: #da3633;
+            --button-danger-hover: #f85149;
+            --diff-bg: #161b22;
+            --diff-border: #30363d;
+            --empty-text: #6e7681;
         }
 
-        .d2h-code-side-line {
-            background-color: #0d1117 !important;
-        }
-
-        .d2h-ins {
-            background-color: rgba(46, 160, 67, 0.15) !important;
-        }
-
-        .d2h-del {
-            background-color: rgba(248, 81, 73, 0.15) !important;
-        }
+        /* Apply theme variables */
 
         /* Responsive design */
         @media (max-width: 768px) {
@@ -226,6 +251,7 @@
         <div class="controls">
             <button id="generateDiff">Generate Diff</button>
             <button id="shareUrl">Share URL</button>
+            <button id="themeToggle">🌙 Dark</button>
             <button id="clearAll">Clear All</button>
         </div>
 
@@ -241,23 +267,33 @@
         const diffContainer = document.getElementById('diffContainer');
         const generateDiffBtn = document.getElementById('generateDiff');
         const shareUrlBtn = document.getElementById('shareUrl');
+        const themeToggleBtn = document.getElementById('themeToggle');
         const clearAllBtn = document.getElementById('clearAll');
 
         // URL separator for encoding two texts
         const SEPARATOR = '◊';
+
+        // Theme management
+        let currentTheme = 'dark'; // default theme
 
         // Initialize the application
         function init() {
             // Set up event listeners
             generateDiffBtn.addEventListener('click', generateDiff);
             shareUrlBtn.addEventListener('click', shareUrl);
+            themeToggleBtn.addEventListener('click', toggleTheme);
             clearAllBtn.addEventListener('click', clearAll);
+
+            // Initialize theme
+            initTheme();
 
             // Auto-generate diff on input change
             text1Element.addEventListener('input', debounce(autoGenerateDiff, 300));
             text2Element.addEventListener('input', debounce(autoGenerateDiff, 300));
 
             // Load from URL if present
+            console.log('Initializing, current URL:', window.location.href);
+            console.log('Current hash:', window.location.hash);
             loadFromUrl();
 
             // Listen for hash changes
@@ -323,13 +359,22 @@
         // Decode texts from URL
         function decodeFromUrl(hash) {
             try {
-                const parts = hash.split(SEPARATOR);
+                // First decode the URL-encoded hash
+                const decodedHash = decodeURIComponent(hash);
+                console.log('Decoded hash:', decodedHash);
+
+                const parts = decodedHash.split(SEPARATOR);
+                console.log('Split parts:', parts, 'Length:', parts.length);
+
                 if (parts.length !== 2) {
                     return null;
                 }
 
                 const text1 = LZString.decompressFromEncodedURIComponent(parts[0]);
                 const text2 = LZString.decompressFromEncodedURIComponent(parts[1]);
+
+                console.log('Decompressed text1:', text1 ? 'SUCCESS' : 'FAILED');
+                console.log('Decompressed text2:', text2 ? 'SUCCESS' : 'FAILED');
 
                 if (text1 === null || text2 === null) {
                     return null;
@@ -383,19 +428,27 @@
         // Load texts from URL
         function loadFromUrl() {
             const hash = window.location.hash.substring(1);
+            console.log('Loading from URL, hash:', hash);
+
             if (!hash) {
+                console.log('No hash found');
                 return;
             }
 
             const decoded = decodeFromUrl(hash);
             if (!decoded) {
-                console.warn('Invalid URL format');
+                console.warn('Invalid URL format, hash:', hash);
                 return;
             }
 
+            console.log('Successfully decoded:', decoded);
             text1Element.value = decoded.text1;
             text2Element.value = decoded.text2;
-            generateDiff();
+
+            // Add a small delay to ensure elements are ready
+            setTimeout(() => {
+                generateDiff();
+            }, 100);
         }
 
         // Clear all texts and diff
@@ -406,6 +459,55 @@
 
             // Clear URL hash
             window.history.replaceState(null, null, window.location.pathname);
+        }
+
+        // Theme management functions
+        function initTheme() {
+            // Load theme from localStorage or use default
+            const savedTheme = localStorage.getItem('diffshare-theme') || 'dark';
+            setTheme(savedTheme);
+        }
+
+        function setTheme(theme) {
+            currentTheme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+
+            // Update button text and icon
+            if (theme === 'dark') {
+                themeToggleBtn.innerHTML = '☀️ Light';
+            } else {
+                themeToggleBtn.innerHTML = '🌙 Dark';
+            }
+
+            // Update highlight.js links for proper diff syntax highlighting
+            updateHighlightTheme(theme);
+
+            // Regenerate diff if it exists to apply new theme
+            if (text1Element.value.trim() && text2Element.value.trim()) {
+                generateDiff();
+            }
+        }
+
+        function toggleTheme() {
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+            localStorage.setItem('diffshare-theme', newTheme);
+        }
+
+        function updateHighlightTheme(theme) {
+            // Remove existing highlight.js links
+            const existingLinks = document.querySelectorAll('link[href*="highlight.js"]');
+            existingLinks.forEach(link => link.remove());
+
+            // Add appropriate theme
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            if (theme === 'dark') {
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css';
+            } else {
+                link.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css';
+            }
+            document.head.appendChild(link);
         }
 
         // Debounce function to limit API calls
