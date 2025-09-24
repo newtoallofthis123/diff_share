@@ -57,6 +57,57 @@
             font-size: 1.1em;
         }
 
+        .site-info {
+            margin-top: 15px;
+        }
+
+        .site-url {
+            display: inline-block;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            color: var(--button-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .site-url:hover {
+            background-color: var(--button-secondary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--header-border);
+            color: var(--placeholder-color);
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: var(--button-secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
         .input-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -209,6 +260,38 @@
 
         /* Apply theme variables */
 
+        /* Diff2html responsive improvements */
+        .diff-container {
+            overflow-x: auto;
+        }
+
+        .d2h-file-wrapper {
+            min-width: 100%;
+        }
+
+        .d2h-code-line-ctn {
+            white-space: pre-wrap !important;
+            word-break: break-all !important;
+            overflow-wrap: anywhere !important;
+            min-width: 0 !important;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .d2h-wrapper {
+                font-size: 12px;
+            }
+
+            .d2h-code-line-ctn {
+                padding: 4px 8px !important;
+            }
+
+            .d2h-code-linenumber {
+                min-width: 40px !important;
+                padding: 4px !important;
+            }
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .input-section {
@@ -234,6 +317,9 @@
         <header>
             <h1>Diff Share</h1>
             <p>Compare texts and share diffs via URL</p>
+            <div class="site-info">
+                <a href="https://diff.noobscience.in" class="site-url">diff.noobscience.in</a>
+            </div>
         </header>
 
         <div class="input-section">
@@ -258,6 +344,11 @@
         <div id="diffContainer" class="diff-container">
             <!-- Diff output will be displayed here -->
         </div>
+
+        <footer>
+            <p>© 2024 <a href="https://noobscience.in" target="_blank">NoobScience</a>. All rights reserved.</p>
+            <p class="footer-note">Made with ❤️ by NoobScience</p>
+        </footer>
     </div>
 
     <script>
