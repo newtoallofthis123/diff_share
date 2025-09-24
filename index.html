@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diff Share - Text Comparison Tool</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon-512.png" sizes="512x512">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="256x256">
+
     <!-- External Libraries -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
 
@@ -47,10 +52,24 @@
             padding-bottom: 48px;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            margin-bottom: 16px;
+        }
+
+        .logo {
+            height: 128px;
+            width: auto;
+            filter: brightness(1.1) contrast(1.1);
+        }
+
         header h1 {
             color: #ffffff;
             font-size: 64px;
-            margin-bottom: 16px;
+            margin: 0;
             font-weight: 800;
             letter-spacing: -0.04em;
             line-height: 1;
@@ -385,7 +404,10 @@
 <body>
     <div class="container">
         <header>
-            <h1>Diff Share</h1>
+            <div class="logo-container">
+                <img src="logo.png" alt="Diff" class="logo">
+                <h1>Share</h1>
+            </div>
             <p>Compare texts and share diffs via URL</p>
             <div class="site-info">
                 <a href="https://diff.noobscience.in" class="site-url">diff.noobscience.in</a>
